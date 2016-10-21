@@ -38,6 +38,7 @@ namespace SSMSStuffAddIn.Handlers
         
         private List<ColumnMapping> ColumnMappings = new List<ColumnMapping>
         {
+
             new ColumnMapping("bigint", "long", false),
             new ColumnMapping("binary", "byte[]", true),
             new ColumnMapping("bit", "bool", false),
@@ -48,10 +49,6 @@ namespace SSMSStuffAddIn.Handlers
             new ColumnMapping("datetimeoffset", "DateTimeOffset", false),
             new ColumnMapping("decimal", "decimal", false),
             new ColumnMapping("float", "double", false),
-            //new ColumnMapping("geography", "xxx", false),
-            //new ColumnMapping("geometry", "xxx", false),
-            //new ColumnMapping("hierarchyid", "xxx", false),
-            //new ColumnMapping("image", "xxx", false),
             new ColumnMapping("int", "int", false),
             new ColumnMapping("money", "decimal", false),
             new ColumnMapping("nchar", "string", true),
@@ -62,16 +59,22 @@ namespace SSMSStuffAddIn.Handlers
             new ColumnMapping("smalldatetime", "DateTime", false),
             new ColumnMapping("smallint", "short", false),
             new ColumnMapping("smallmoney", "decimal", false),
-            //new ColumnMapping("sql_variant", "xxx", false),
-            //new ColumnMapping("sysname", "xxx", false),
             new ColumnMapping("text", "string", true),
             new ColumnMapping("time", "TimeSpan", false),
-            //new ColumnMapping("timestamp", "xxx", false),
             new ColumnMapping("tinyint", "byte", false),
             new ColumnMapping("uniqueidentifier", "Guid", false),
             new ColumnMapping("varbinary", "byte[]", true),
             new ColumnMapping("varchar", "string", true),
-            //new ColumnMapping("xml", "xxx", false),
+
+            new ColumnMapping("geography", null, false),
+            new ColumnMapping("geometry", null, false),
+            new ColumnMapping("hierarchyid", null, false),
+            new ColumnMapping("image", null, false),
+            new ColumnMapping("sql_variant", null, false),
+            new ColumnMapping("sysname", null, false),
+            new ColumnMapping("timestamp", null, false),
+            new ColumnMapping("xml", null, false),
+
         };
 
         public string GetCode()
@@ -104,10 +107,10 @@ order by c.column_id
 
                         var clm = ColumnMappings.FirstOrDefault(e => e.SqlType.ToLowerInvariant() == tpe.ToLowerInvariant());
                         
-                        if(clm == null)
+                        if(clm?.CSType == null)
                         {
                             props +=
-                                $"    //SQL type {tpe} not handled...\n" +
+                                $"    //SQL type {tpe} not handled, mapping to object...\n" +
                                 $"    public object {nme} {{ get; set; }}\n" +
                                 $"    //...\n";
                         }else
