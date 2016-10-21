@@ -23,41 +23,33 @@ namespace SSMSStuffAddIn
 
         public string Version => @"1.0.0.0";
         
-        private ISsmsFunctionalityProvider6 m_Provider;
+        private ISsmsFunctionalityProvider6 _provider;
 
         public void OnLoad(ISsmsExtendedFunctionalityProvider provider)
         {
-            m_Provider = (ISsmsFunctionalityProvider6)provider;
+            _provider = (ISsmsFunctionalityProvider6)provider;
             AddObjectExplorerContextMenu();
             AddObjectExplorerListener();
         }
 
         private void AddObjectExplorerListener()
         {
-            m_Provider.ObjectExplorerWatcher.ConnectionsChanged += (args) => { OnConnectionsChanged(args); };
-            m_Provider.ObjectExplorerWatcher.SelectionChanged += (args) => { OnSelectionChanged(args); };
+            _provider.ObjectExplorerWatcher.ConnectionsChanged += (args) => { OnConnectionsChanged(args); };
+            _provider.ObjectExplorerWatcher.SelectionChanged += (args) => { OnSelectionChanged(args); };
         }
 
         private void AddObjectExplorerContextMenu()
         {
-            m_Provider.AddTopLevelMenuItem(new AssemblyExportMenuItem(m_Provider));
-            m_Provider.AddTopLevelMenuItem(new TableCreateClassCodeMenuItem(m_Provider));
+            _provider.AddTopLevelMenuItem(new AssemblyExportMenuItem(_provider));
+            _provider.AddTopLevelMenuItem(new TableCreateClassCodeMenuItem(_provider));
         }
 
         private void OnSelectionChanged(ISelectionChangedEventArgs args)
         {
-            //m_MessageLog.AddMessage(string.Format("Object explorer selection: {0}", args.Selection.Path));
         }
 
         private void OnConnectionsChanged(IConnectionsChangedEventArgs args)
         {
-            //m_MessageLog.AddMessage("Object explorer connections:");
-            int count = 1;
-            foreach (var connection in args.Connections)
-            {
-                //m_MessageLog.AddMessage(string.Format("\t{0}: {1}", count, connection.Server));
-                count++;
-            }
         }
 
         public void OnNodeChanged(ObjectExplorerNodeDescriptorBase node)

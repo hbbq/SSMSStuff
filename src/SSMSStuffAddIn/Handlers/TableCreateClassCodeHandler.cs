@@ -25,18 +25,18 @@ namespace SSMSStuffAddIn.Handlers
         private class ColumnMapping
         {
             public string SqlType { get; private set; }
-            public string CSType { get; private set; }
-            public bool CSReferenceType { get; private set; }
+            public string CsType { get; private set; }
+            public bool CsReferenceType { get; private set; }
 
             public ColumnMapping(string sqlType, string csType, bool csReferenceType)
             {
                 SqlType = sqlType;
-                CSType = csType;
-                CSReferenceType = csReferenceType;
+                CsType = csType;
+                CsReferenceType = csReferenceType;
             }
         }
         
-        private List<ColumnMapping> ColumnMappings = new List<ColumnMapping>
+        private readonly List<ColumnMapping> ColumnMappings = new List<ColumnMapping>
         {
 
             new ColumnMapping("bigint", "long", false),
@@ -107,7 +107,7 @@ order by c.column_id
 
                         var clm = ColumnMappings.FirstOrDefault(e => e.SqlType.ToLowerInvariant() == tpe.ToLowerInvariant());
                         
-                        if(clm?.CSType == null)
+                        if(clm?.CsType == null)
                         {
                             props +=
                                 $"    //SQL type {tpe} not handled, mapping to object...\n" +
@@ -116,7 +116,7 @@ order by c.column_id
                         }else
                         {
                             props +=
-                                $"    public {clm.CSType}{((nul && !clm.CSReferenceType) ? "?" : "")} {nme} {{ get; set; }}\n";
+                                $"    public {clm.CsType}{((nul && !clm.CsReferenceType) ? "?" : "")} {nme} {{ get; set; }}\n";
                         }
 
                     }

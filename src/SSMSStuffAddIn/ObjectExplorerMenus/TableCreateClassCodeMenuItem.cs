@@ -12,11 +12,11 @@ namespace SSMSStuffAddIn.ObjectExplorerMenus
     class TableCreateClassCodeMenuItem : ActionSimpleOeMenuItemBase
     {
 
-        private readonly ISsmsFunctionalityProvider6 m_Provider;
+        private readonly ISsmsFunctionalityProvider6 _provider;
 
         public TableCreateClassCodeMenuItem(ISsmsFunctionalityProvider6 provider)
         {
-            m_Provider = provider;
+            _provider = provider;
         }
 
         public override string ItemText => "Generate C# class";
@@ -42,7 +42,7 @@ namespace SSMSStuffAddIn.ObjectExplorerMenus
                 var handler = new TableCreateClassCodeHandler(cn.ConnectionString, db.Schema, oeNode.Name);
                 var str = handler.GetCode();
 
-                m_Provider.QueryWindow.OpenNew(str);
+                _provider.QueryWindow.OpenNew(str);
 
             }            
 

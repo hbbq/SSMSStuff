@@ -12,11 +12,11 @@ namespace SSMSStuffAddIn.ObjectExplorerMenus
     class AssemblyExportMenuItem : ActionSimpleOeMenuItemBase
     {
 
-        private readonly ISsmsFunctionalityProvider6 m_Provider;
+        private readonly ISsmsFunctionalityProvider6 _provider;
 
         public AssemblyExportMenuItem(ISsmsFunctionalityProvider6 provider)
         {
-            m_Provider = provider;
+            _provider = provider;
         }
 
         public override string ItemText => "Export to file...";
@@ -38,13 +38,6 @@ namespace SSMSStuffAddIn.ObjectExplorerMenus
 
             if(oeNode.TryGetDatabaseObject(out db) && oeNode.TryGetConnection(out cn))
             {
-
-                //m_Provider.QueryWindow.OpenNew($"select * from sys.assemblies where [name] = '{oeNode.Name.Replace("'", "''")}'", oeNode.Name, cn.ConnectionString);
-
-                //var w = new Windows.ExportAssemblyWindow();
-
-                //var wind = m_Provider.ToolWindow.Create(w, "test", Guid.NewGuid(), false);
-                //wind.Activate(true);
 
                 var handler = new AssemblyExportHandler(cn.ConnectionString, oeNode.Name);
                 handler.SaveIt();
