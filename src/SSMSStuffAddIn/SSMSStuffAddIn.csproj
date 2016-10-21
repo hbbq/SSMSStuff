@@ -54,7 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddIn.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Handlers\AssemblyExportHandler.cs" />
+    <Compile Include="Handlers\TableCreateClassCodeHandler.cs" />
+    <Compile Include="ObjectExplorerMenus\TableCreateClassCodeMenuItem.cs" />
     <Compile Include="ObjectExplorerMenus\AssemblyExportMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

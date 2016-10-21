@@ -41,6 +41,7 @@ namespace SSMSStuffAddIn
         private void AddObjectExplorerContextMenu()
         {
             m_Provider.AddTopLevelMenuItem(new AssemblyExportMenuItem(m_Provider));
+            m_Provider.AddTopLevelMenuItem(new TableCreateClassCodeMenuItem(m_Provider));
         }
 
         private void OnSelectionChanged(ISelectionChangedEventArgs args)
