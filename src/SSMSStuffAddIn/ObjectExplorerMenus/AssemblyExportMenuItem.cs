@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RedGate.SIPFrameworkShared;
+using SSMSStuffAddIn.Handlers;
 
 namespace SSMSStuffAddIn.ObjectExplorerMenus
 {
@@ -38,8 +39,15 @@ namespace SSMSStuffAddIn.ObjectExplorerMenus
             if(oeNode.TryGetDatabaseObject(out db) && oeNode.TryGetConnection(out cn))
             {
 
-                m_Provider.QueryWindow.OpenNew($"select * from sys.assemblies where [name] = '{oeNode.Name.Replace("'", "''")}'", oeNode.Name, cn.ConnectionString);
-                
+                //m_Provider.QueryWindow.OpenNew($"select * from sys.assemblies where [name] = '{oeNode.Name.Replace("'", "''")}'", oeNode.Name, cn.ConnectionString);
+
+                //var w = new Windows.ExportAssemblyWindow();
+
+                //var wind = m_Provider.ToolWindow.Create(w, "test", Guid.NewGuid(), false);
+                //wind.Activate(true);
+
+                var handler = new AssemblyExportHandler(cn.ConnectionString, oeNode.Name);
+                handler.SaveIt();
 
             }            
 
