@@ -12,11 +12,13 @@ namespace SSMSStuffAddIn.Handlers
     {
         
         public string ConnectionString { get; private set; }
+        public string SchemaName { get; private set; }
         public string TableName { get; private set; }
 
-        public TableCreateClassCodeHandler(string connectionString, string tableName)
+        public TableCreateClassCodeHandler(string connectionString, string schemaName, string tableName)
         {
             ConnectionString = connectionString;
+            SchemaName = schemaName;
             TableName = tableName;
         }
 
@@ -44,7 +46,7 @@ namespace SSMSStuffAddIn.Handlers
             new ColumnMapping("datetime", "DateTime", false),
             new ColumnMapping("datetime2", "DateTime", false),
             new ColumnMapping("datetimeoffset", "DateTimeOffset", false),
-            new ColumnMapping("deciaml", "decimal", false),
+            new ColumnMapping("decimal", "decimal", false),
             new ColumnMapping("float", "double", false),
             //new ColumnMapping("geography", "xxx", false),
             //new ColumnMapping("geometry", "xxx", false),
@@ -88,7 +90,7 @@ from sys.columns c
 where c.object_id = object_id(@table)
 order by c.column_id
 ";
-                cm.Parameters.AddWithValue("@table", TableName);
+                cm.Parameters.AddWithValue("@table", SchemaName + "." + TableName);
                 cn.Open();
 
                 using(var rdr = cm.ExecuteReader())

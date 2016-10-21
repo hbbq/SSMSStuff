@@ -39,7 +39,7 @@ namespace SSMSStuffAddIn.ObjectExplorerMenus
             if(oeNode.TryGetDatabaseObject(out db) && oeNode.TryGetConnection(out cn))
             {
 
-                var handler = new TableCreateClassCodeHandler(cn.ConnectionString, oeNode.Name);
+                var handler = new TableCreateClassCodeHandler(cn.ConnectionString, db.Schema, oeNode.Name);
                 var str = handler.GetCode();
 
                 m_Provider.QueryWindow.OpenNew(str);
