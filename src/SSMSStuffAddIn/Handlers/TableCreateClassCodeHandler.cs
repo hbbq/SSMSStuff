@@ -82,7 +82,7 @@ order by c.column_id
                         if(clm == null)
                         {
                             props +=
-                                $"    //type {tpe} not handled...\n" +
+                                $"    //SQL type {tpe} not handled...\n" +
                                 $"    public object {nme} {{ get; set; }}\n" +
                                 $"    //...\n";
                         }else
