@@ -19,7 +19,7 @@ namespace SSMSStuffAddIn.ObjectExplorerMenus
             m_Provider = provider;
         }
 
-        public override string ItemText => "Generate C# class code";
+        public override string ItemText => "Generate C# class";
 
         public override bool AppliesTo(ObjectExplorerNodeDescriptorBase oeNode)
         {

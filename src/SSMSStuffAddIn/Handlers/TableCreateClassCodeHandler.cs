@@ -33,22 +33,45 @@ namespace SSMSStuffAddIn.Handlers
                 CSReferenceType = csReferenceType;
             }
         }
-
+        
         private List<ColumnMapping> ColumnMappings = new List<ColumnMapping>
         {
             new ColumnMapping("bigint", "long", false),
+            new ColumnMapping("binary", "byte[]", true),
             new ColumnMapping("bit", "bool", false),
-            new ColumnMapping("varchar", "string", true),
-            new ColumnMapping("nvarchar", "string", true),
             new ColumnMapping("char", "string", true),
-            new ColumnMapping("nchar", "string", true),
+            new ColumnMapping("date", "DateTime", false),
+            new ColumnMapping("datetime", "DateTime", false),
+            new ColumnMapping("datetime2", "DateTime", false),
+            new ColumnMapping("datetimeoffset", "DateTimeOffset", false),
+            new ColumnMapping("deciaml", "decimal", false),
+            new ColumnMapping("float", "double", false),
+            //new ColumnMapping("geography", "xxx", false),
+            //new ColumnMapping("geometry", "xxx", false),
+            //new ColumnMapping("hierarchyid", "xxx", false),
+            //new ColumnMapping("image", "xxx", false),
             new ColumnMapping("int", "int", false),
-            new ColumnMapping("datetime", "DateTime", true),
             new ColumnMapping("money", "decimal", false),
-            new ColumnMapping("float", "decimal", false),
+            new ColumnMapping("nchar", "string", true),
+            new ColumnMapping("ntext", "string", true),
+            new ColumnMapping("numeric", "decimal", false),
+            new ColumnMapping("nvarchar", "string", true),
+            new ColumnMapping("real", "float", false),
+            new ColumnMapping("smalldatetime", "DateTime", false),
+            new ColumnMapping("smallint", "short", false),
+            new ColumnMapping("smallmoney", "decimal", false),
+            //new ColumnMapping("sql_variant", "xxx", false),
+            //new ColumnMapping("sysname", "xxx", false),
+            new ColumnMapping("text", "string", true),
+            new ColumnMapping("time", "TimeSpan", false),
+            //new ColumnMapping("timestamp", "xxx", false),
+            new ColumnMapping("tinyint", "byte", false),
+            new ColumnMapping("uniqueidentifier", "Guid", false),
             new ColumnMapping("varbinary", "byte[]", true),
+            new ColumnMapping("varchar", "string", true),
+            //new ColumnMapping("xml", "xxx", false),
         };
-        
+
         public string GetCode()
         {
 
