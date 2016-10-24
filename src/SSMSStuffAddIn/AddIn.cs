@@ -41,6 +41,7 @@ namespace SSMSStuffAddIn
         private void AddObjectExplorerContextMenu()
         {
             _provider.AddTopLevelMenuItem(new AssemblyExportMenuItem(_provider));
+            _provider.AddTopLevelMenuItem(new DatabaseGetConnectionStringMenuItem(_provider));
             _provider.AddTopLevelMenuItem(new TableCreateClassCodeMenuItem(_provider));
         }
 
